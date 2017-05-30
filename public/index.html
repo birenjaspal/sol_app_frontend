@@ -1,34 +1,96 @@
 <!DOCTYPE html>
 <html ng-app="auth_app">
-  <head>
-    <meta charset="utf-8">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+<head>
+  <meta charset="utf-8">
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
 
-    <title>final project</title>
-  </head>
-  <body ng-controller="mainController as ctrl">
-    <header></header>
-    <main>
-      <!-- {{ctrl.test}} -->
-      <form ng-submit="ctrl.login(userPass)">
-       <input type="text" ng-model="userPass.username" placeholder="username"/>
-       <input type="password" ng-model="userPass.password" placeholder="password"/>
-       <input type="submit"/>
-     </form>
+  <title>final project</title>
+</head>
+<body ng-controller="mainController as ctrl">
+  <header></header>
 
-     <a href="#" ng-click="ctrl.logout()">log out</a>
+    <!-- Sign Up Modal -->
+    <div class="modal fade" id="signup" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="formHeader modal-title">Sign Up Form</h4>
+          </div>
+          <div class="formInput modal-body">
+            <form>
+              <div ng-show="!ctrl.isRegistered" style="color:red">{{ctrl.createUserMessage}}</div>
+              <input ng-model="ctrl.name" type="text" placeholder="Name"/><span style="color:red">*</span><br>
+              <input ng-model="ctrl.email" type="text" placeholder="Email"/><span style="opacity: 0">*</span><br>
+              <!-- <input type="text" placeholder="Date of Birth"/><br> -->
+              <input ng-model="ctrl.img" type="text" placeholder="Image URL"/><span style="opacity: 0">*</span><br>
+              <input ng-model="ctrl.username" type="text" placeholder="username"/><span style="color:red">*</span><br>
+              <input ng-model="ctrl.password" type="password" placeholder="Password"/><span style="color:red">*</span><br>
+              <button class="btn btn-default" type="submit" name="button" ng-click="ctrl.createUser()">Submit</button>
+            </form >
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-     <p> logged in username: {{ctrl.user.username}}</p>
+    <!-- Login Modal -->
+    <div class="modal fade" id="login" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="formHeader modal-title">Log In</h4>
+          </div>
+          <form >
+            <div ng-show="!ctrl.isLoggedIn" style="color:red">{{ctrl.logInMessage}}</div>
+            <div class="formInput modal-body">
+              <input type="text" ng-model="userPass.username" placeholder="Userame"/><br>
+              <input type="password" ng-model="userPass.password" placeholder="Password"/><br>
+            </div>
+          </form>
 
-     <h4 ng-click="ctrl.getUsers()">click to see secret stuf</h4>
+          <div class="modal-footer">
+            <button class="btn btn-default" type="submit" name="button" ng-click="ctrl.loginUser(userPass)">Login</button>
+            <button ng-click="ctrl.resetLoginMsg()" type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-     <div> {{ctrl.error}}</div>
 
-     <div ng-repeat="user in ctrol.users">
-       <h1> {{ user.username}}</h1>
-     </div>
-     
-    </main>
-  </body>
+
+
+
+
+    <!-- {{ctrl.test}} -->
+    <!-- <form ng-submit="ctrl.login(userPass)">
+    <input type="text" ng-model="userPass.username" placeholder="username"/>
+    <input type="password" ng-model="userPass.password" placeholder="password"/>
+    <input type="submit"/>
+  </form>
+
+  <a href="#" ng-click="ctrl.logout()">log out</a>
+
+  <p> logged in username: {{ctrl.user.username}}</p>
+
+  <h4 ng-click="ctrl.getUsers()">click to see secret stuf</h4>
+
+  <div> {{ctrl.error}}</div>
+
+  <div ng-repeat="user in ctrol.users">
+  <h1> {{ user.username}}</h1>
+</div> -->
+
+</body>
 </html>
